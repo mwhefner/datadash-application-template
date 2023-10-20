@@ -1,0 +1,260 @@
+/* TITLE */
+
+/* light_theme.css */
+
+/* AUTHOR */
+
+/* m w hefner */
+
+/* DATE CREATED */
+
+/* 7/14/2023 */
+
+/* DESCRIPTION */
+
+/* Holds styling for the light theme... TODO: may need to be done differently. */
+
+/* Notes */
+
+/* This comes from the Research Institute for Environment, */
+/* Energy, and Economics' DataDash application template.*/
+
+/* Global Tags */
+body {
+    background-color : rgba(0, 0, 0, 0);
+    margin : 0px;
+    padding : 0px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+}
+
+#main_container {
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+    overflow-x: visible;
+    height: 100vh;
+    transition: all 0.5s ease;
+}
+
+#main_container.light {
+    background-color: white;
+    color: #000;
+}
+
+#main_container.dark {
+    background-color: black;
+    color: #fff;
+}
+
+/* Control Panel */
+
+#panel_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: fixed;
+    left : 0px;
+    top: 0px;
+
+    z-index: 1001;
+
+    box-sizing: border-box;
+    width: 500px;
+    height: 100%;
+    padding: 20px;
+    align-items: stretch;
+    transition: all 0.5s ease;
+}
+
+#panel_container.collapsed {
+    left : -500px;
+}
+
+#panel_container.light {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+}
+
+#panel_container.dark {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+}
+
+/* Panel display toggle */
+
+#control_panel_toggle {
+    position:absolute;
+    right:-30px;
+    top:0px;
+    height: 100%;
+    /* Should match the left padding of the content display area */
+    width: 30px;
+    /*transition: all 0.5s ease;*/
+}
+
+#control_panel_toggle.light {
+    background-image : linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5));
+    cursor: pointer; /* Change cursor to a pointer on hover */
+}
+
+#control_panel_toggle.dark {
+    background-image : linear-gradient(to right, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.5));
+    cursor: pointer; /* Change cursor to a pointer on hover */
+}
+
+#control_panel_toggle.light:hover {
+    background-image : linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.75));
+    border-right: 1px solid #000000; /* 1px solid black top border */
+    border-left: 1px solid #000000; /* 2px dotted blue left border */
+}
+
+#control_panel_toggle.dark:hover {
+    background-image : linear-gradient(to right, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75));
+    border-right: 1px solid #FFFFFF; /* 1px solid black top border */
+    border-left: 1px solid #FFFFFF; /* 2px dotted blue left border */
+}
+
+/* within control panel */
+
+#control_panel_header {
+    align-self: flex-start; /* Align to the top */
+
+    padding: 0px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#control_panel_header a {
+    display: block;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+#control_panel_header img {
+    height: 30px;
+    display: inline-block;
+    margin: 10px;
+}
+
+#backtodatadash {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+}
+
+/* Controls */
+
+#controls_container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end; /* Align to the bottom */
+    flex: 1; /* Grow to fill remaining space */
+    padding: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow-y: auto;
+}
+
+/* Dropdown controls */
+
+/* TODO: Fix the class situation with these.  This is not done consistently with the rest of the theme styling. */
+
+.universal_button {
+    /* Add your CSS styles here */
+    background-color: #333; /* Change the background color */
+    color: #fff; /* Change the text color */
+    border: none; /* Remove the button border */
+    border-radius: 5px;
+    padding: 10px 20px; /* Adjust padding as needed */
+    cursor: pointer; /* Change cursor to a pointer on hover */
+  }
+  
+.universal_button:hover {
+    background-color: #555; /* Change the background color on hover */
+}
+
+.universal_button p {
+    margin: 0px
+}
+
+.universal_button a {
+    text-decoration: none;
+}
+
+#theme_toggle {
+    align-self: center;
+}
+
+.dropdown_light {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.dropdown_light h2 {
+    color: #fff;
+}
+
+.dropdown_dark {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.dropdown_dark h2 {
+    color: #fff;
+}
+
+/* Content Display Area */
+
+#display_container {
+    width: 100%;
+    height: 100vh;
+    padding-left: 30px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Styling for Markdown */
+.markdown {
+    padding: 50px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background: linear-gradient(to bottom right, rgba(128, 128, 128, 1), rgba(128, 128, 128, 0));
+}
+
+.table_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Map / Plot */
+
+#plotly-figure {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Table displays */
+.table_container p {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Custom styling for Dash DataTable */
+.dash-table-container th {
+    color: black !important;
+    text-align: center;
+}
+
+.dash-table-container td {
+    color: black !important;
+    text-align: center;
+}
