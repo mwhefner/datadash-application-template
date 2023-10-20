@@ -7,7 +7,7 @@ Last Modified: 7/16/2023
 
 Project: DataDash Application Template
 
-Script Description: This script defines an example plotly figure using static data.
+Script Description: This script defines an example plotly figure using static data from the RIEEE data server.
 
 Exceptional notes about this script:
 (none)
@@ -26,10 +26,23 @@ import plotly.express as px
 import pandas as pd
 import datetime
 import plotly.io as pio
-from components.utils import constants as d
+import components.utils.sqlconnection as sqlconnection
 
-# Carbon Atlas
+# Function to retrieve data from data server
+def get_static_data():
+    sql = '''
+    SELECT * FROM static
+    '''
+    sqlconnection.cursor.execute(sql)
+    result = sqlconnection.cursor.fetchall()
+    return result
+
+# Example Plotly Figure
 def example_figure(theme) :
+
+    example_static_data = get_static_data()
+
+    df = pd.DataFrame(example_static_data, columns=["Time", "Variable1", "Variable2"])
 
     if theme == 'light' :
         textCol = '#000'
@@ -38,7 +51,7 @@ def example_figure(theme) :
 
     # Create a Plotly time series figure with a range selector
     fig = px.line(
-        d.example_static_data, 
+        df, 
         x='Time', 
         y=['Variable1', 'Variable2']
         )
