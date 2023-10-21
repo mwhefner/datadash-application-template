@@ -1,10 +1,10 @@
-# DataDash Application Template
+# RIEEE DataDash Application Template
 
-Author: M. W. Hefner
+**Author: M. W. Hefner**
 
-This is the DataDash application template.  Here, you will put a description and introduction to your application.
+This is the RIEEE DataDash application template for Python web applications built with the Dash framework.  Here, you will put a description and introduction to your application.  
 
-This application is built using Dash, a Python framework for building interactive web applications. It utilizes the Plotly library for creating data visualizations.
+This application template is built using Dash, a Python framework for building interactive web applications. It securely connects to the RIEEE data server in real-time, displaying $\LaTeX$-supporting markdown pages, rendering data tables, and utilizing the Plotly library for highly interactive data visualizations.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This application is built using Dash, a Python framework for building interactiv
 
 ## Before You Begin
 
-Make sure that the RIEEE DataDash administrator has given you the permissions necessary to create a new DataDash application.
+Make sure that the RIEEE DataDash administrator has given you the permissions necessary to create a new DataDash application.  This includes the necessary data server permissions and corresponding config file to include in your development directory.  The RIEEE data server can only be connected to directly through a secure connection; off-campus development requires the use of AppState's secure VPN software.
 
 ## Installation and Getting Started
 
@@ -69,6 +69,8 @@ pip install -r requirements.txt
 
 Note: this step may take a considerable amount of time.
 
+7. Place the config file in the application's root directory.
+
 ## Running for Local Development
 
 1. Activate the virtual environment:
@@ -105,6 +107,8 @@ deactivate
 
 Give a detailed description of the application's features.
 
+There are three pages in this template.  The first is a demonstration of a markdown page display, which display's the project's readme.md (other markdown files should be included in the assets' markdown folder.)  The second page connects to the RIEEE data server and creates an example plotly figure.  The third instead reads data hosted in the assets folder, an appropriate option for smaller datasets, and displays an example data table.
+
 ## License
 
-Add appropriate license information here.
+Add appropriate license information for your application here.

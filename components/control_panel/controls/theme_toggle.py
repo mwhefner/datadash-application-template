@@ -30,15 +30,12 @@ import dash.html
 layout = dash.html.Div(
     id = component_id,
     children= [
-
-        # TODO: Make Look nice
         dash.html.Button(
             dash.html.P('Switch to Dark Theme'), 
             id = 'theme_toggle_switch',  
             className = "universal_button", 
             n_clicks=0
         )
-
     ]
 )
 

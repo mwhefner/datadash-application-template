@@ -21,9 +21,9 @@ This Dash application was created using the template provided by the Research In
 """
 
 # Import Dependencies
-from dash import Dash
-import components.main_container as mc
+import dash
 import configparser
+from flask import request
 from components.utils.constants import application_title
 
 cfg = configparser.ConfigParser()
@@ -39,7 +39,7 @@ external_stylesheets = {
 }
 
 # Initialize Dash Application
-app = Dash(
+app = dash.Dash(
     __name__, 
     external_stylesheets = external_stylesheets['light_theme'],
     title = application_title,
@@ -47,8 +47,24 @@ app = Dash(
     url_base_pathname=cfg.get('app', 'url_prefix', fallback='/')
 )
 
-# Define Application Layout
-app.layout = mc.layout
+# Define Application Layout depending on whether or not the user is logged in
+if 'Remote-User' in request.headers.keys():
+    # The user is logged in.
+    # TODO: Add code to check if the user has access.
+    import components.main_container as mc
+    app.layout = mc.layout
+else:
+    app.layout = dash.html.Div(
+        dash.html.P(
+            children = [
+                dash.html.P("Please "),
+                dash.html.A(
+                    "login with Shibboleth", 
+                    href="/Shibboleth.sso/Login?target=/datadash-application-template"),
+                dash.html.P(" to access this DataDash application."),
+            ]
+        )
+    )
 
 app.index_string = '''
 <!DOCTYPE html>
@@ -72,6 +88,8 @@ app.index_string = '''
 
 server = app.server
 
-# Main script execution
-#if __name__ == '__main__':
-#    app.run_server(debug = True)
+# Main script execution for (local development only)
+# Uncomment this to develop locally on the local host
+# Comment the following out before re-committing to the repo
+if __name__ == '__main__':
+    app.run_server(debug = True)

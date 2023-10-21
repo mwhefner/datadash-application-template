@@ -29,6 +29,8 @@ import plotly.io as pio
 import components.utils.sqlconnection as sqlconnection
 
 # Function to retrieve data from data server
+# 
+# It is possible to create callbacks in this file for live-update data
 def get_static_data():
     sql = '''
     SELECT * FROM static
