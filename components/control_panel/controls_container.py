@@ -27,21 +27,18 @@ component_id = "controls_container"
 import dash.html.Div
 import components.control_panel.controls.navigation_dropdown as navigation_dropdown
 import components.control_panel.controls.theme_toggle as theme_toggle
-import components.control_panel.backtodatadash as backtodatadash
+import components.control_panel.defaultbuttonarea as defaultbuttonarea
 
 # LAYOUT
 layout = dash.html.Div(
     id = component_id,
     children= [
-
-        # THEME TOGGLE
-        theme_toggle.layout,
         
         # NAVIGATION SELECTION
         navigation_dropdown.layout,
 
-        # INFO / BACK TO DATADASH
-        backtodatadash.layout,
+        # INFO / DEFAULT BUTTON AREA
+        defaultbuttonarea.layout,
 
     ]
 )

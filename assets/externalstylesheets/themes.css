@@ -12,8 +12,6 @@
 
 /* DESCRIPTION */
 
-/* Holds styling for the light theme... TODO: may need to be done differently. */
-
 /* Notes */
 
 /* This comes from the Research Institute for Environment, */
@@ -139,11 +137,25 @@ body {
     margin: 10px;
 }
 
-#backtodatadash {
+#defaultbuttonarea {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     text-align: center;
+
+    border-top: 1px solid #FFFFFF;
+
+    font-size: 12px;
+}
+
+#defaultbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Controls */
@@ -235,7 +247,7 @@ body {
     align-items: center;
 }
 
-/* Map / Plot */
+/* Plotly Figure */
 
 #plotly-figure {
     height: 100%;

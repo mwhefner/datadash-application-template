@@ -60,9 +60,14 @@ def example_figure(theme) :
     fig.update_xaxes(rangeslider_visible=True)  # Add a range selector
 
     fig.update_layout(
+
+        # Make sure the background of figures is transparent so that 
+        # theme functionality is extended to the figure
         geo=dict(bgcolor= 'rgba(0,0,0,0)'),
         plot_bgcolor='rgba(0, 0, 0, 0)',
         paper_bgcolor='rgba(0,0,0,0)',
+
+        # Figure Specific-----------------------------------------
         title = dict(
             text = "Example Plotly Figure of Static Data",
             xanchor="center",

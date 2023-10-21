@@ -3,11 +3,11 @@ Module/Script Name: panel_container.py
 Author: M. W. Hefner
 
 Created: 6/28/2023
-Last Modified: 7/14/2023
+Last Modified: 10/21/2023
 
-Project: CDIAC at AppState
+Project: DataDash Application Template
 
-Script Description: This script defines the logical layout and callback functionality of the panel_container.
+Script Description: This script defines the logical layout and callback functionality of the panel_container, one of the two primary components of the DataDash Dash application template.  As the name implies, this panel contains all of the controls that will allow the user to navigate and interact with your application.
 
 Exceptional notes about this script:
 (none)
@@ -28,7 +28,6 @@ import dash.html.Div
 import dash.exceptions
 import components.control_panel.control_panel_header as control_panel_header
 import components.control_panel.controls_container as controls_container
-import components.control_panel.backtodatadash as backtodatadash
 
 # LAYOUT
 layout = dash.html.Div(
@@ -40,9 +39,6 @@ layout = dash.html.Div(
 
         # OPTIONS CONTAINER
         controls_container.layout,
-
-        # INFO / BACK TO DATADASH
-        #backtodatadash.layout,
 
         dash.html.Div(
 
