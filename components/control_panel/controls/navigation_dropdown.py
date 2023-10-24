@@ -51,11 +51,15 @@ layout = dash.html.Div(
 
             options=[
 
-                {'label': 'About', 'value': 'about'},
+                {'label': 'About (Example: Simple LaTeX Markdown Display)', 'value': 'about'},
 
-                {'label': 'Example: Plotly Figure - Static Data', 'value': 'example-1'},
+                {'label': 'Example: Simple Plotly Figure of Static Data Server Data', 'value': 'example-1'},
 
-                {'label': 'Example: Table - Static Data', 'value': 'example-2'},
+                {'label': 'Example: Simple Data Table of Local Static Data', 'value': 'example-2'},
+
+                {'label': 'Example: Dash Controls', 'value': 'example-3'},
+
+                {'label': 'Example: Live Update Data', 'value': 'example-4'},
                 
             ],
 

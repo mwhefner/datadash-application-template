@@ -237,7 +237,7 @@ body {
     padding: 50px;
     margin-left: 15%;
     margin-right: 15%;
-    background: linear-gradient(to bottom right, #648362, rgba(128, 128, 128, 0));
+    background: linear-gradient(to bottom right, rgba(100, 125, 98, 0.5), rgba(128, 128, 128, 0));
 }
 
 .table_container {

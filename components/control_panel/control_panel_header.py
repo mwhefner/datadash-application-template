@@ -7,7 +7,7 @@ Last Modified: 7/14/2023
 
 Project: DataDash Application Template
 
-Script Description: This script defines the style, layout, and callback functionality of the control_panel header.
+Script Description: This script defines the style, layout, and callback functionality of the control_panel header.  This is also where the sign-on/sign-off functionality is handled for shibb, visually.
 
 Exceptional notes about this script:
 (none)
@@ -26,7 +26,6 @@ component_id = "control_panel_header"
 # Import Dependencies
 import dash.html.Div
 # import components.examplesubcomponent as examplesubcomponent
-import components.utils.constants as static_data
 from components.utils.constants import application_title
 
 # LAYOUT
@@ -55,6 +54,7 @@ layout = dash.html.Div(
         # Title
 
         dash.html.H1(application_title)
+
     ]
 )
 

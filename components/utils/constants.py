@@ -12,8 +12,16 @@ Contains import and other utility functions for the application.
 import pandas as pd
 import math
 
+# IN-LINE APPLICATION METADATA----------------------------------------
+
 # SETS THE TITLE OF THE APPLICATION
 application_title = "RIEEE DataDash Application Template"
+
+# SET THE APPLICATION ID (APPLICATION METADATA USED FOR AUTHORIZATION)
+app_id = 8
+
+# SET THE REPO TITLE (APPLICATION METADATA USED FOR AUTHORIZATION)
+repo_title = "datadash-application-template"
 
 # Import static data
 example_static_data = pd.read_excel('./assets/example_static_data.xlsx')

@@ -2,18 +2,16 @@
 
 **Author: M. W. Hefner**
 
-This is the RIEEE DataDash application template for Python web applications built with the Dash framework.  Here, you will put a description and introduction to your application.  
-
-This application template is built using Dash, a Python framework for building interactive web applications. It securely connects to the RIEEE data server in real-time, displaying $\LaTeX$-supporting markdown pages, rendering data tables, and utilizing the Plotly library for highly interactive data visualizations.
+This web application and associated documentation is the RIEEE DataDash Dash framework application template. It securely connects to the RIEEE data server in real-time, displaying $\LaTeX$-supporting markdown pages, rendering data tables, and utilizing the Dash and Plotly libraries for highly interactive data visualizations. Put a description and introduction to your application here.
 
 ## Table of Contents
 
-- [Before You Begin](#beforeyoubegin)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
+- Before You Begin
+- Installation and Getting Started
+- Usage
+- Features
+- Contributing
+- License
 
 ## Before You Begin
 
@@ -69,7 +67,7 @@ pip install -r requirements.txt
 
 Note: this step may take a considerable amount of time.
 
-7. Place the config file in the application's root directory.
+7. Place the config file obtained from the RIEEE DataDash administrator in the application's root directory.
 
 ## Running for Local Development
 
@@ -107,7 +105,13 @@ deactivate
 
 Give a detailed description of the application's features.
 
-There are three pages in this template.  The first is a demonstration of a markdown page display, which display's the project's readme.md (other markdown files should be included in the assets' markdown folder.)  The second page connects to the RIEEE data server and creates an example plotly figure.  The third instead reads data hosted in the assets folder, an appropriate option for smaller datasets, and displays an example data table.
+There are five pages in this template.  
+
+- The first is a demonstration of a markdown page display, which display's the project's readme.md (other markdown files should be included in the assets' markdown folder.)  
+- The second page connects to the RIEEE data server and creates an example plotly figure.  
+- The third instead reads data hosted in the assets folder, an appropriate option for smaller datasets, and displays an example data table.
+- The fourth displays a wide variety of some of the buttons and visualizations available with the Dash and Plotly libraries.
+- The fifth displays an example of secure live-update data from the data server.
 
 ## License
 
