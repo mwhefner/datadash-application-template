@@ -37,11 +37,13 @@ def animation_example(theme) :
     if theme == 'dark' :
         textCol = '#fff'
 
-    data = io.imread("https://github.com/scikit-image/skimage-tutorials/raw/main/images/cells.tif")
+    data = io.imread("assets/cells.tif")
+
     data = data.reshape((15, 4, 256, 256))[5:]
+
     fig = px.imshow(data, animation_frame=0, facet_col=1, binary_string=True)
 
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    #fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     fig.update_layout(
 

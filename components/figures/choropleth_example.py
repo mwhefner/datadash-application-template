@@ -39,10 +39,12 @@ def choropleth_example(theme) :
         textCol = '#fff'
         map_theme = "open-street-map"
 
-    with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
-        counties = json.load(response)
+    # Open the JSON file
+    with open('assets/geojson-counties-fips.json', 'r') as json_file:
+        # Load the JSON data into a Python data structure
+        counties = json.load(json_file)
 
-    df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv", dtype={"fips": str})
+    df = pd.read_csv("assets/fips-unemp-16.csv", dtype={"fips": str})
 
     import plotly.graph_objects as go
 
@@ -63,7 +65,7 @@ def choropleth_example(theme) :
 
         # Figure Specific-----------------------------------------
         title = dict(
-            text="Chorpleth Example: Unemployment Percentage by County",
+            text="Choropleth Map Example: Switch Theme to Change Base Map",
             xanchor="center",
             xref = "container",
             yref = "container",

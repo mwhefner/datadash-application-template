@@ -93,7 +93,7 @@ shibbSignOnLayout = dash.html.P(
             "sign in with Shibboleth", 
             href = "/Shibboleth.sso/Login?target=/" + repo_title, 
         ),
-        " to access this RIEEE DataDash application."
+        " to access this RIEEE DataDash application.  If you believe you are seeing this in error, please contact the RIEEE DataDash webmaster."
     ],
     style={'text-align' : 'center'}
 )

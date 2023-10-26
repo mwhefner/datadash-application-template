@@ -52,7 +52,7 @@ def surface_example(theme) :
 
     fig.add_trace(go.Surface(x=x, y=y, z=z, colorbar_x=-0.07), 1, 1)
     fig.add_trace(go.Surface(x=x, y=y, z=z, surfacecolor=x**2 + y**2 + z**2), 1, 2)
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    #fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     fig.update_layout(
 
@@ -82,7 +82,7 @@ def surface_example(theme) :
 
         # Figure Specific-----------------------------------------
         title = dict(
-            text = "Rendering 3D Surfaces with RIEEE DataDash",
+            text = "Rendering 3D Plots and Data",
             xanchor="center",
             xref = "container",
             yref = "container",
