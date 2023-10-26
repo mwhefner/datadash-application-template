@@ -46,6 +46,16 @@ layout = dash.html.Div(
         # DROPDOWN MENU-------------------------------------------------
 
         dash.html.Div(
+            dash.dcc.Markdown(
+                id='markdown-text-id',
+                children='''# Plotly Chorpleth Map \n## with Dash Controls \nThe following controls are available for the control panel at this time, including *this* markdown container.  This markdown can either be specified in-line, or be included in the assets/markdown folder for larger texts.  This can be used to help explain features of your application and how to interact with them.''',
+            ),
+            style={'margin-top' : '15px', 'margin-bottom' : '15px'},
+            id='markdown-div-id',
+            hidden=True,
+        ),
+
+        dash.html.Div(
             [
                 dash.html.H2('Multi-Choice Dropdown'),
 
@@ -176,16 +186,6 @@ layout = dash.html.Div(
             ],
             style={'margin-top' : '15px', 'margin-bottom' : '15px'},
             id='range-slider-div-id', 
-            hidden=True,
-        ),
-
-        dash.html.Div(
-            dash.dcc.Markdown(
-                id='markdown-text-id',
-                children='''**Markdown Text Example:** \n You can use Markdown *here too!* \n# You can make Headers \n## And subheaders \n- and bulleted lists \n- Try it out!''',
-            ),
-            style={'margin-top' : '15px', 'margin-bottom' : '15px'},
-            id='markdown-div-id',
             hidden=True,
         ),
 

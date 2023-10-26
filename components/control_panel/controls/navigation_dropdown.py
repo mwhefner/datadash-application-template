@@ -57,14 +57,17 @@ layout = dash.html.Div(
 
                 #{'label': 'Example: Simple Data Table of Local Static Data', 'value': 'example-2'},
 
-                {'label': 'Example: Dash Controls and Advanced Plotly Figures', 'value': 'example-3'},
+                {'label': 'Example: Dash Controls and Interactive Choropleth', 'value': 'example-3'},
 
                 #{'label': 'Example: Live Update Figures', 'value': 'example-4'},
                 
+                {'label': 'Example: Surfaces', 'value': 'example-5'},
+
+                {'label': 'Example: Animations', 'value': 'example-6'},
             ],
 
             # Default to the Carbon Atlas
-            value = 'example-1',
+            value = 'about',
 
             clearable=False,
 

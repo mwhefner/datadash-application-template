@@ -27,7 +27,9 @@ component_id = "display_container"
 import dash.html.Div
 from components.utils import constants as d
 from components.figures.example_figure import simple_example_figure
-from components.figures.advanced_plotly_subfigures import advanced_plotly_subfigures
+from components.figures.choropleth_example import choropleth_example
+from components.figures.surface_example import surface_example
+from components.figures.animation_example import animation_example
 from components.tables.browse import browse_table
 
 # LAYOUT
@@ -89,7 +91,19 @@ def update_fig_or_table(nav_opt, theme):
 
         # Controls Demo
 
-        return advanced_plotly_subfigures(theme)
+        return choropleth_example(theme)
+
+    if nav_opt == 'example-5' :
+
+        # Surface Demo
+
+        return surface_example(theme)
+    
+    if nav_opt == 'example-6' :
+
+        # Animation Demo
+
+        return animation_example(theme)
 
     else :
 

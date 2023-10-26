@@ -1,5 +1,5 @@
 """
-Module/Script Name: advanced_plotly_subfigures.py
+Module/Script Name: animation_example.py
 Author: M. W. Hefner
 
 Created: 7/12/2023
@@ -26,72 +26,22 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+from skimage import io
 
-def randomPlot(s, theme):
-    #
-    # Plots a random time series
-    #
-    np.random.seed(s)
-
-    # Define the number of rows
-    num_rows = 100
-
-    # Define the start time and time increment
-    start_time = pd.Timestamp('2023-10-25 00:00:00')
-    time_increment = pd.Timedelta(minutes=15)  # Adjust the increment as needed
-
-    # Create the DataFrame with the 'Time' column
-    df = pd.DataFrame({
-        'Time': pd.date_range(start=start_time, periods=num_rows, freq=time_increment),
-        'y': np.random.rand(num_rows),
-        'z': np.random.rand(num_rows)
-    })
-
-    if theme == 'light' :
-        textCol = '#000'
-    if theme == 'dark' :
-        textCol = '#fff'
-
-    # Create a Plotly time series
-    fig = px.line(
-        df, 
-        x='Time', 
-        y=['y', 'z']
-        )
-
-    return fig
-
-def subplot_1(theme):
-    fig = randomPlot(1, theme)
-    return fig
-
-def subplot_2(theme):
-    fig = randomPlot(2, theme)
-    return fig
-
-def subplot_3(theme):
-    fig = randomPlot(3, theme)
-    return fig
-
-def subplot_4(theme):
-    fig = randomPlot(4, theme)
-    return fig
 
 # Example Plotly Figure
-def advanced_plotly_subfigures(theme) :
+def animation_example(theme) :
 
     if theme == 'light' :
         textCol = '#000'
     if theme == 'dark' :
         textCol = '#fff'
 
-    fig = make_subplots(rows = 2, cols = 2)
+    data = io.imread("https://github.com/scikit-image/skimage-tutorials/raw/main/images/cells.tif")
+    data = data.reshape((15, 4, 256, 256))[5:]
+    fig = px.imshow(data, animation_frame=0, facet_col=1, binary_string=True)
 
-    # Each of the subplots
-    fig.add_trace(subplot_1(theme).data[0], row=1, col=1)
-    fig.add_trace(subplot_2(theme).data[0], row=1, col=2)
-    fig.add_trace(subplot_3(theme).data[0], row=2, col=1)
-    fig.add_trace(subplot_4(theme).data[0], row=2, col=2)
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     fig.update_layout(
 
@@ -101,9 +51,9 @@ def advanced_plotly_subfigures(theme) :
         plot_bgcolor='rgba(0, 0, 0, 0)',
         paper_bgcolor='rgba(0,0,0,0)',
 
+
         # Figure Specific-----------------------------------------
         title = dict(
-            text = "Sample Dash Controls and Advanced Plotly Subfigures",
             xanchor="center",
             xref = "container",
             yref = "container",
