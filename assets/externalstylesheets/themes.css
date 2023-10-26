@@ -171,6 +171,20 @@ body {
     overflow-y: auto;
 }
 
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.control_dark {
+    color: #fff;
+}
+ 
+.control_light {
+    color: #fff;
+}
+
 /* Dropdown controls */
 
 /* TODO: Fix the class situation with these.  This is not done consistently with the rest of the theme styling. */

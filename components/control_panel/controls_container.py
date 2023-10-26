@@ -28,7 +28,7 @@ import dash.html.Div
 import components.control_panel.controls.navigation_dropdown as navigation_dropdown
 import components.control_panel.controls.theme_toggle as theme_toggle
 import components.control_panel.defaultbuttonarea as defaultbuttonarea
-
+import components.control_panel.controls.buttons_templates as button_templates
 # LAYOUT
 layout = dash.html.Div(
     id = component_id,
@@ -36,6 +36,9 @@ layout = dash.html.Div(
         
         # NAVIGATION SELECTION
         navigation_dropdown.layout,
+
+        # CONTROLS GO HERE
+        button_templates.layout,
 
         # INFO / DEFAULT BUTTON AREA
         defaultbuttonarea.layout,

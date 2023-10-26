@@ -2,6 +2,9 @@
 Module/Script Name: example_figure.py
 Author: M. W. Hefner
 
+NOTICE: I AM NOT THE AUTHOR OF MANY OF THESE FIGURE CALLS.  I AM MERELY
+IMPLEMENTING THEM HERE FOR DEMONSTRATION OF HOW TO USE THEM.
+
 Created: 4/12/2023
 Last Modified: 7/16/2023
 
@@ -22,29 +25,57 @@ This figure was created using the template provided by the Research Institute fo
 
 # Import needed libraries
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import plotly.figure_factory as ff
 import plotly.express as px
 import pandas as pd
-import datetime
+import numpy as np
 import plotly.io as pio
 import components.utils.sqlconnection as sqlconnection
 
-# Function to retrieve data from data server
-# 
-# It is possible to create callbacks in this file for live-update data
-def get_static_data():
-    sql = '''
-    SELECT * FROM static
-    '''
-    sqlconnection.cursor.execute(sql)
-    result = sqlconnection.cursor.fetchall()
-    return result
+# Creates a random plot (for development purposes)
+def randomPlot(s, theme):
+    #
+    # Plots a random time series
+    #
+    np.random.seed(s)
 
-# Example Plotly Figure
-def example_figure(theme) :
+    # Define the number of rows
+    num_rows = 100
 
-    example_static_data = get_static_data()
+    # Define the start time and time increment
+    start_time = pd.Timestamp('2023-10-25 00:00:00')
+    time_increment = pd.Timedelta(minutes=15)  # Adjust the increment as needed
+
+    # Create the DataFrame with the 'Time' column
+    df = pd.DataFrame({
+        'Time': pd.date_range(start=start_time, periods=num_rows, freq=time_increment),
+        'y': np.random.rand(num_rows),
+        'z': np.random.rand(num_rows)
+    })
+
+    if theme == 'light' :
+        textCol = '#000'
+    if theme == 'dark' :
+        textCol = '#fff'
+
+    # Create a Plotly time series
+    fig = px.line(
+        df, 
+        x='Time', 
+        y=['y', 'z']
+        )
+
+    return fig
+
+# Example of plotting secure research data from the data server
+def data_server_data_figure(theme) :
+
+    example_static_data = sqlconnection.get_research_data()
 
     df = pd.DataFrame(example_static_data, columns=["Time", "Variable1", "Variable2"])
+
+    df['Variable1'] = df['Variable1'] + 3
 
     if theme == 'light' :
         textCol = '#000'
@@ -58,8 +89,112 @@ def example_figure(theme) :
         y=['Variable1', 'Variable2']
         )
 
-    # Add a range selector
-    fig.update_xaxes(rangeslider_visible=True)  # Add a range selector
+    fig.update_layout(
+
+        # Make sure the background of figures is transparent so that 
+        # theme functionality is extended to the figure
+        geo=dict(bgcolor= 'rgba(0,0,0,0)'),
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+
+        # Figure Specific-----------------------------------------
+        xaxis_title="Time",
+        yaxis_title="Values",
+        font=dict(color=textCol),  # Change axis labels text color
+    )
+
+    return fig
+
+def subplot_2(theme):
+    np.random.seed(1)
+    x0 = np.random.randn(500)
+    # Add 1 to shift the mean of the Gaussian distribution
+    x1 = np.random.randn(500) + 1
+
+    fig = go.Figure()
+    fig.add_trace(go.Histogram(x=x0))
+    fig.add_trace(go.Histogram(x=x1))
+
+    # Overlay both histograms
+    fig.update_layout(barmode='overlay')
+    # Reduce opacity to see both histograms
+    fig.update_traces(opacity=0.75)
+    return fig
+
+def subplot_3(theme):
+    np.random.seed(1)
+    N = 30     # Number of boxes
+
+    # generate an array of rainbow colors by fixing the saturation and lightness of the HSL
+    # representation of colour and marching around the hue.
+    # Plotly accepts any CSS color format, see e.g. http://www.w3schools.com/cssref/css_colors_legal.asp.
+    c = ['hsl('+str(h)+',50%'+',50%)' for h in np.linspace(0, 360, N)]
+
+    # Each box is represented by a dict that contains the data, the type, and the colour.
+    # Use list comprehension to describe N boxes, each with a different colour and with different randomly generated data:
+    fig = go.Figure(data=[go.Box(
+        y=3.5 * np.sin(np.pi * i/N) + i/N + (1.5 + 0.5 * np.cos(np.pi*i/N)) * np.random.rand(10),
+        marker_color=c[i]
+        ) for i in range(int(N))])
+
+    # format the layout
+    fig.update_layout(
+        xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+        yaxis=dict(zeroline=False, gridcolor='white'),
+        paper_bgcolor='rgb(233,233,233)',
+        plot_bgcolor='rgb(233,233,233)',
+    )
+    return fig
+
+def subplot_4(theme):
+    np.random.seed(1)
+
+    N = 100
+    random_x = np.linspace(0, 1, N)
+    random_y0 = np.random.randn(N) + 5
+    random_y1 = np.random.randn(N)
+    random_y2 = np.random.randn(N) - 5
+
+    fig = go.Figure()
+
+    # Add traces
+    fig.add_trace(go.Scatter(x=random_x, y=random_y0,
+                        mode='markers',
+                        name='markers'))
+    fig.add_trace(go.Scatter(x=random_x, y=random_y1,
+                        mode='lines+markers',
+                        name='lines+markers'))
+    fig.add_trace(go.Scatter(x=random_x, y=random_y2,
+                        mode='lines',
+                        name='lines'))
+
+    return fig
+
+def simple_example_figure(theme):
+
+
+    if theme == 'light' :
+        textCol = '#000'
+    if theme == 'dark' :
+        textCol = '#fff'
+
+    fig = make_subplots(rows = 2, cols = 2)
+
+    # Each of the subplots
+
+    # From the data server
+    for trace in data_server_data_figure(theme).data:
+        fig.add_trace(trace, row=1, col=1)
+
+    # Histogram
+    for trace in subplot_2(theme).data:
+        fig.add_trace(trace, row=1, col=2)
+
+    for trace in subplot_3(theme).data:
+        fig.add_trace(trace, row=2, col=1)
+
+    for trace in subplot_4(theme).data:
+        fig.add_trace(trace, row=2, col=2)
 
     fig.update_layout(
 
@@ -71,7 +206,7 @@ def example_figure(theme) :
 
         # Figure Specific-----------------------------------------
         title = dict(
-            text = "Example Plotly Figure of Static Data",
+            text = "Plotly Figures of Secure Data from Data Server",
             xanchor="center",
             xref = "container",
             yref = "container",

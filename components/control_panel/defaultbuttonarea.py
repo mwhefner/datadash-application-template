@@ -62,10 +62,10 @@ layout = dash.html.Div(
                 "This application is made possible by the ",
                 dash.html.A(
                     "Research Institute for Environment, Energy, and Economics", 
-                    href = "https://datadash-dev.appstate.edu", 
+                    href = "https://rieee.appstate.edu", 
                     style={"color" : "white"}
                 ),
-                " at Appalachian State University through the RIEEE DataDash research web application platform. License information and source is avaiable ",
+                " at Appalachian State University through the RIEEE DataDash secure research web application platform. License information and source is avaiable ",
                 dash.html.A(
                     "here on GitHub.", 
                     href = "https://github.com/mwhefner/datadash-application-template", 
@@ -77,10 +77,10 @@ layout = dash.html.Div(
         # Displays the RIEEE logo, which serves as a link to the RIEEE mainpage
         dash.html.A(
             dash.html.Img(
-                src='/assets/images/RIEEE_LOGO.svg'
+                src='assets/images/RIEEE_LOGO.png', height=200
             ), 
             href = "https://rieee.appstate.edu",
-            style={"color" : "white", 'width': '50%', 'height': '50%', 'display': 'block', 'margin': 'auto'}
+            style={'display': 'block', 'margin': 'auto'}
         ),
 
     ]

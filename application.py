@@ -22,11 +22,14 @@ This Dash application was created using the template provided by the Research In
 
 """
 
+# !!! IMPORTANT: CHANGE TO FALSE BEFORE PUSHING !!!
+LOCAL_DEVELOPMENT = False
+# !!! IMPORTANT: CHANGE TO FALSE BEFORE PUSHING !!!
+
 # Import Dependencies
 import dash
+import secrets
 import configparser
-from flask import Flask, request, redirect, url_for
-from functools import wraps
 import components.main_container as mc
 import components.utils.login as login
 from components.utils.constants import application_title, repo_title
@@ -36,9 +39,9 @@ cfg = configparser.ConfigParser()
 cfg.read('/etc/rieee/rieee.conf')
 cfg.read('rieee.conf')
 
-# Import Styles that _have_ to be CSS;
+# Import CSS Styles
 external_stylesheets = {
-    'light_theme' : [
+    'datadash_template_css' : [
         "./assets/externalstylesheets/dynamic_styling.css",
         "./assets/externalstylesheets/themes.css"
     ]
@@ -47,48 +50,80 @@ external_stylesheets = {
 # Initialize Dash Application
 app = dash.Dash(
     __name__, 
-    external_stylesheets = external_stylesheets['light_theme'],
+    external_stylesheets = external_stylesheets['datadash_template_css'],
     title = application_title,
     update_title = None,
     url_base_pathname=cfg.get('app', 'url_prefix', fallback='/'),
+    # / DEVELOPER NOTE
+    # /
+    # /  We have to supress callback exceptions
+    # /  (callouts are defined to an application
+    # /  app.server at start-up, on the server end,
+    # /  but app.layout, sent to the client _before_ auth,
+    # /  will not initially have many of the elements with IDs
+    # /  in order to prevent sending unauthorized users
+    # /  application information in the layout)
+    # /
+    # /- M W HEFNER 10/24/2023
     suppress_callback_exceptions=True
 )
 
-app.config.suppress_callback_exceptions = True
-
-# Define Layout as a div
+# Define Layout of the Dash Application
 app.layout = dash.html.Div(
-        children = [
-            dash.dcc.Location(id='url'),
-            dash.html.Div(id='secure-div')
-            ],
-    )
+    children = [
+        # A location object tracks the address bar url
+        dash.dcc.Location(id='url'),
+        # Secure container
+        dash.html.Div(id='secure-div'),
+        # Interval for live update data
+        dash.dcc.Interval(
+            id='interval-component',
+            # in milliseconds
+            interval=1000, # (1 second)
+            n_intervals=0
+        )
+    ],
+)
 
-# This callback gets ran when a user loads the page or
-# the url is altered in some way.  This checks that
-# the user is authorized to view the application (main container)
+# Create a page for Shibboleth Sign-On if the user is not authorized
+shibbSignOnLayout = dash.html.P(
+    [
+        "This application is not available. If you have authorization, please ",
+        dash.html.A(
+            "sign in with Shibboleth", 
+            href = "/Shibboleth.sso/Login?target=/" + repo_title, 
+        ),
+        " to access this RIEEE DataDash application."
+    ],
+    style={'text-align' : 'center'}
+)
+
+# Checks to see if the user is authorized and returns 
+# the main container as the app layout if so.
+#
+# This is called any time there is a change to the url.
+#
+# The second input is to prevent memorization.
 @dash.callback(
     dash.Output('secure-div', 'children'),
-    dash.Input('url', 'pathname')
+    dash.Output('url', 'hash'),
+    dash.Input('url', 'pathname'),
+    dash.State('url', 'hash'),
+    cache_timeout = 0
 )
-def authorize(pathname):
-    if login.userIsAuthorized() :
-        return mc.layout
+def authorize(pathname, hash):
+
+    # Application Authorization Token (for preventing memorization)
+    authorizationToken = secrets.token_hex()
+
+    if login.userIsAuthorized() or LOCAL_DEVELOPMENT:
+        # If the user is authorized, or this is for local development:
+        return mc.layout, authorizationToken
     else :
-        return dash.html.P(
-            [
-                "Please ",
-                dash.html.A(
-                    "sign in with Shibboleth", 
+        # If the user is not authorized, provide them with a shibboleth sign-on
+        return shibbSignOnLayout, authorizationToken
 
-                    # To be changed for new applications!
-                    href = "/Shibboleth.sso/Login?target=/" + repo_title, 
-                ),
-                " to access this DataDash application."
-            ],
-            style={'text-align' : 'center'}
-        )
-
+# Boilerplate index HTML
 app.index_string = '''
 <!DOCTYPE html>
 <html>
@@ -109,10 +144,11 @@ app.index_string = '''
 </html>
 '''
 
+# Name the app.server server
+# Corresponds to application:server (thisScript:app.server) in the docker file
 server = app.server
 
 # Main script execution for (local development only)
-# Uncomment this to develop locally on the local host
-# Comment the following out before re-committing to the repo
-if __name__ == '__main__':
+if __name__ == '__main__' and LOCAL_DEVELOPMENT:
+    # True for hot reloading (leave True)
     app.run_server(debug = True)

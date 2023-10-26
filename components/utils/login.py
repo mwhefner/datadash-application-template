@@ -23,7 +23,7 @@ def authenticaedLogin():
     
     else :
 
-        return [False, "notloggedintoastudentaccount"]
+        return [False, None]
 
 # Access RIEEE Data Server application metadata to determine if
 # the user is authorized for this application.
@@ -36,19 +36,20 @@ def userIsAuthorized():
     # Get Log in information
     login = authenticaedLogin()
 
-    # Get Authorization metadata from the dataserver
-    metadata = dataserver.get_authorization_metadata(login[1])
+    if login[1] is not None :
+        # Get Authorization metadata from the dataserver
+        metadata = dataserver.get_authorization_metadata(login[1])
 
-    applicationIsPublic = metadata[0][0][0].lower() == "true"
-    userIsAdmin = metadata[1][0][0].lower() == "true"
-    userHasPermission = metadata[2][0][0].lower() == "true"
+        applicationIsPublic = metadata[0][0][0].lower() == "true"
+        userIsAdmin = metadata[1][0][0].lower() == "true"
+        userHasPermission = metadata[2][0][0].lower() == "true"
 
-    if applicationIsPublic or userIsAdmin :
-        # USER AUTHORIZED
-        return True
-    if userHasPermission :
-        # USER AUTHORIZED
-        return True
+        if applicationIsPublic or userIsAdmin :
+            # USER AUTHORIZED
+            return True
+        if userHasPermission :
+            # USER AUTHORIZED
+            return True
     
     # otherwise... USER NOT AUTHORIZED
     return False

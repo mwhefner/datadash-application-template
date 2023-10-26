@@ -27,17 +27,32 @@ metadata_config = {
     'ssl_ca': './assets/rieeedata.crt'
 }
 
-# Establish a secure connection to the MySQL server for application data
-try:
-    connection = connect(**config)
-    # this can be helpful for debugging
-    #print("Connected to MySQL server...")
-except Error as e:
-    print(f"Error connecting to MySQL server: {e}.  Are you connected to App's VPN?")
-    exit(1)
+# Function to establish a MySQL connection
+def connect_to_mysql():
+    try:
+        connection = connect(**config)
+        # This can be helpful for debugging
+        # print("Connected to MySQL server...")
+        return connection
+    except Error as e:
+        print(f"Error connecting to MySQL server: {e}. Are you connected to App's VPN?")
+        exit(1)
 
-# Create a cursor object to execute SQL queries
-cursor = connection.cursor()
+# Function to retrieve data from data server
+# 
+# It is possible to create callbacks in this file for live-update data
+def get_research_data():
+
+    connection = connect_to_mysql()
+    cursor = connection.cursor()
+
+    sql = '''
+    SELECT * FROM static
+    '''
+    
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
 
 def get_authorization_metadata(username):
     # this retrieves metadata from the RIEEE data server about this 
