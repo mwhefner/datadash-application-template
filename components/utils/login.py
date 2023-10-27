@@ -33,16 +33,22 @@ def userIsAuthorized():
     if not flask.has_request_context():
         return False
 
+    # First grab application metadata.
+    metadata = dataserver.get_application_metadata()
+    applicationIsPublic = metadata[0][0][0].lower() == "true"
+
+    # If the application is public, return true.
+    if applicationIsPublic:
+        return True
+
     # Get Log in information
     login = authenticaedLogin()
 
     if login[1] is not None :
-        # Get Authorization metadata from the dataserver
-        metadata = dataserver.get_authorization_metadata(login[1])
 
-        applicationIsPublic = metadata[0][0][0].lower() == "true"
-        userIsAdmin = metadata[1][0][0].lower() == "true"
-        userHasPermission = metadata[2][0][0].lower() == "true"
+        metadata = dataserver.get_authorization_metadata(login[1])
+        userIsAdmin = metadata[0][0][0].lower() == "true"
+        userHasPermission = metadata[1][0][0].lower() == "true"
 
         if applicationIsPublic or userIsAdmin :
             # USER AUTHORIZED

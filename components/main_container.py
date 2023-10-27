@@ -1,13 +1,15 @@
 """
 Module/Script Name: maincontainer.py
+
 Author: M. W. Hefner
 
 Created: 6/28/2023
-Last Modified: 7/14/2023
+
+Last Modified: 10/27/2023
 
 Project: DataDash Application Template
 
-Script Description: This script defines the logical layout and callback functionality of the maincontainer.
+Script Description: This script defines the logical layout and callback functionality of the main container of the application.  This container holds all the other html tags and is the child of the secure-container Div tag in the app.layout if and only if the user is authorized.
 
 Exceptional notes about this script:
 
@@ -21,7 +23,8 @@ This Dash application component was created using the template provided by the R
 
 """
 
-# Component ID (Should be the same as the title of this file)
+# Component ID (Should be the same or similar as the title of this file)
+# This is used for css styling and callbacks.
 component_id = "main_container"
 
 # Import Dependencies
@@ -31,8 +34,6 @@ import components.content_display.display_container as display_container
 
 # LAYOUT
 layout = dash.html.Div(
-
-    # MAIN APPLICATION CONTAINER
 
     id = component_id,
     
@@ -66,6 +67,25 @@ layout = dash.html.Div(
     dash.dependencies.Input('theme_toggle', 'className')
 )
 def theme_toggle(theme):
+    """
+    Updates this component's theme when the theme toggle is updated.
+
+    Parameters
+    ----------
+    
+    theme : string
+        The input used to trigger the callback (when the theme's class changes).
+
+    Returns
+    -------
+
+    string
+        Used to update the url's hash state to prevent memorization.
+
+    json
+        directly returns what the dcc.Loading's CSS should be since it must be defined with Python.
+
+    """
     if theme == 'light' :
         return theme, {'background-color' : 'white'}
     else :

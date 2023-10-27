@@ -1,18 +1,19 @@
 """
 Module/Script Name: application.py
+
 Author: M. W. Hefner
+
 Created: 6/28/2023
+
 Last Modified: 10/24/2023
 
 Project: DataDash Application Template
 
-Script Description: This script initializes the dash application. It loads in needed libraries, reads the data server configuration, loads style sheets, and initializes the server.
-
-It also contains the scripting that authorizes a user to access the application.
+Script Description: This script initializes the dash application. It loads in needed libraries, reads the data server configuration, loads style sheets, and initializes the server.  It also contains the scripting that authorizes a user to access the application.
 
 Exceptional notes about this script:
 
-1. This script is for development on a local machine: after loading into a python environment with the dependencies in requirements.txt, found in this directory, installed, run this script to run the application server on local host at port 8050.
+1. Using this script for development on a local machine: after loading into a python environment with the dependencies in requirements.txt, found in this directory, installed, run this script to run the application server on local host at port 8050.
 
 Callback methods: 0
 
@@ -39,7 +40,7 @@ cfg = configparser.ConfigParser()
 cfg.read('/etc/rieee/rieee.conf')
 cfg.read('rieee.conf')
 
-# Import CSS Styles
+# CSS Styles
 external_stylesheets = {
     'datadash_template_css' : [
         "./assets/externalstylesheets/dynamic_styling.css",
@@ -98,12 +99,6 @@ shibbSignOnLayout = dash.html.P(
     style={'text-align' : 'center'}
 )
 
-# Checks to see if the user is authorized and returns 
-# the main container as the app layout if so.
-#
-# This is called any time there is a change to the url.
-#
-# The second input is to prevent memorization.
 @dash.callback(
     dash.Output('secure-div', 'children'),
     dash.Output('url', 'hash'),
@@ -112,7 +107,35 @@ shibbSignOnLayout = dash.html.P(
     cache_timeout = 0
 )
 def authorize(pathname, hash):
+    """
+    Checks to see if the user is authorized and returns 
+    the main container as the app layout if so.
+    
+    This is called any time there is a change to the url.
+    
+    The second input is to prevent memorization.
 
+    Parameters
+    ----------
+    pathname : string
+        The input used to trigger the authorization callback.
+
+    hash : string
+        State context used simply to prevent memorization.  
+        There is nothing inherently sensitive about the hash.
+
+    Returns
+    -------
+    dash.html.Div
+        If authorized, the first return item is the layout of the application.
+        If not, it returns the sign-on page.
+
+    string
+        Used to update the url's hash state to prevent memorization.
+
+    authorizationToken
+
+    """
     # Application Authorization Token (for preventing memorization)
     authorizationToken = secrets.token_hex()
 

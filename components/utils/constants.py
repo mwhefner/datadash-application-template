@@ -23,6 +23,8 @@ app_id = 8
 # SET THE REPO TITLE (APPLICATION METADATA USED FOR AUTHORIZATION)
 repo_title = "datadash-application-template"
 
+app_doi = "NONE_FOR_TEMPLATE"
+
 # Import static data
 example_static_data = pd.read_excel('./assets/example_static_data.xlsx')
 

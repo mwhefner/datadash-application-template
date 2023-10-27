@@ -54,11 +54,8 @@ def get_research_data():
     result = cursor.fetchall()
     return result
 
-def get_authorization_metadata(username):
-    # this retrieves metadata from the RIEEE data server about this 
-    # application and whether or not the user has authorization
-    # to access the application.  I highly recommend not fooling
-    # around here.
+def get_application_metadata():
+    # Grabs the metadata for the application
 
     # Establish a secure connection to the MySQL server for application data
     try:
@@ -82,6 +79,29 @@ def get_authorization_metadata(username):
     metadata_cursor.execute(applicationIsPublic)
     applicationIsPublic = metadata_cursor.fetchall()
 
+    return applicationIsPublic
+
+
+def get_authorization_metadata(username):
+    # this retrieves metadata from the RIEEE data server about this 
+    # application and whether or not the user has authorization
+    # to access the application.  I highly recommend not fooling
+    # around here.
+
+    # Establish a secure connection to the MySQL server for application data
+    try:
+        metadata_connection = connect(**metadata_config)
+        # this can be helpful for debugging
+        #print("Connected to MySQL server...")
+    except Error as e:
+        print(f"Error connecting to MySQL server: {e}.  Are you connected to App's VPN?")
+        exit(1)
+
+    # Create a cursor object to execute SQL queries
+    metadata_cursor = metadata_connection.cursor()
+
+
+
     # Is the user an admin?---------------------------------
     userIsAdmin = '''
     SELECT CASE
@@ -102,4 +122,4 @@ def get_authorization_metadata(username):
     metadata_cursor.execute(userHasPermission)
     userHasPermission = metadata_cursor.fetchall()
 
-    return [applicationIsPublic, userIsAdmin, userHasPermission]
+    return [auserIsAdmin, userHasPermission]

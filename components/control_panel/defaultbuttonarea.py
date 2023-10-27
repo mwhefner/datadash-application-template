@@ -27,6 +27,7 @@ component_id = "defaultbuttonarea"
 import dash.html.Div
 # import components.examplesubcomponent as examplesubcomponent
 import components.control_panel.controls.theme_toggle as theme_toggle
+import components.utils.constants as constants
 
 # LAYOUT
 layout = dash.html.Div(
@@ -81,6 +82,14 @@ layout = dash.html.Div(
             ), 
             href = "https://rieee.appstate.edu",
             style={'display': 'block', 'margin': 'auto'}
+        ),
+
+        # Statement of RIEEE support and source code link
+        dash.html.P(
+            [
+                "DOI: ",
+                constants.app_doi
+            ]
         ),
 
     ]
