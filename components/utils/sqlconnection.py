@@ -122,4 +122,4 @@ def get_authorization_metadata(username):
     metadata_cursor.execute(userHasPermission)
     userHasPermission = metadata_cursor.fetchall()
 
-    return [auserIsAdmin, userHasPermission]
+    return [userIsAdmin, userHasPermission]

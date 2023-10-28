@@ -5,7 +5,7 @@ Author: M. W. Hefner
 
 Created: 6/28/2023
 
-Last Modified: 10/24/2023
+Last Modified: 10/27/2023
 
 Project: DataDash Application Template
 
@@ -132,8 +132,6 @@ def authorize(pathname, hash):
 
     string
         Used to update the url's hash state to prevent memorization.
-
-    authorizationToken
 
     """
     # Application Authorization Token (for preventing memorization)
