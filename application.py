@@ -136,7 +136,7 @@ def authorize(pathname, hash):
     # Application Authorization Token (for preventing memorization)
     authorizationToken = secrets.token_hex()
 
-    if login.userIsAuthorized() or LOCAL_DEVELOPMENT:
+    if login.userIsAuthorized():
         # If the user is authorized, or this is for local development:
         return mc.layout, authorizationToken
     else :

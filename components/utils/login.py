@@ -50,9 +50,10 @@ def authenticaedLogin():
 # Access RIEEE Data Server application metadata to determine if
 # the user is authorized for this application.
 def userIsAuthorized():
+
     # First grab application metadata.
     metadata = dataserver.get_application_metadata()
-    applicationIsPublic = metadata[0][0][0].lower() == "true"
+    applicationIsPublic = metadata[0][0][0].lower() == "t"
 
     # If the application is public, return true.
     if applicationIsPublic:
