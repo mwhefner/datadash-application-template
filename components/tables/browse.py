@@ -1,23 +1,25 @@
 """
 Module/Script Name: browse.py
-Author: M. W. Hefner
 
-Created: 7/15/2023
-Last Modified: 7/16/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 7/15/2023
 
-Script Description: This script defines the dash datatable and its container used for a browse table page.
+Last Modified: 
+
+Script Description: This script defines the upload csv/excel component and dash datatable.
 
 Exceptional notes about this script:
+(none)
 
 Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
+
 # Component ID (Should be the same as the title of this file)
 component_id = "browse"
 
@@ -79,8 +81,8 @@ def parse_contents(contents, filename, date, theme):
 
     return dash.html.Div(
         children = [
-        dash.html.H5(filename),
-        dash.html.H6(["Uploaded at: ", datetime.datetime.fromtimestamp(date)]),
+        dash.html.H3(["Filename: ",filename]),
+        dash.html.H3(["Uploaded: ", datetime.datetime.fromtimestamp(date)]),
             dash.dash_table.DataTable(
                 df.to_dict('records'),
                 [{'name': i, 'id': i} for i in df.columns],

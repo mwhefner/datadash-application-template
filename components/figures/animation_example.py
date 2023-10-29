@@ -1,31 +1,27 @@
 """
 Module/Script Name: animation_example.py
-Author: M. W. Hefner
 
-Created: 7/12/2023
-Last Modified: 10/24/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 7/12/2023
 
-Script Description: This script defines an example plotly figure with many subfigures driven by the values of the Dash controls.
+Last Modified: 10/29/2023
+
+Script Description: this is an example of an animation with plotly figures.  This figure example comes from https://plotly.com/python/imshow/ (combining animations and facets).
 
 Exceptional notes about this script:
 (none)
 
-Callback methods: N/A
+Callback methods: 0
 
 ~~~
 
-This figure was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 
 # Import needed libraries
-from plotly.subplots import make_subplots
 import plotly.express as px
-import plotly.graph_objects as go
-import pandas as pd
-import numpy as np
 from skimage import io
 
 

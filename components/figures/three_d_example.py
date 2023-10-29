@@ -1,24 +1,22 @@
 """
 Module/Script Name: three_d_example.py
 
-Author: M. W. Hefner
+Author(s): M. W. Hefner
 
-Created: 7/12/2023
+Initially Created: 7/12/2023
 
 Last Modified: 10/29/2023
 
-Project: DataDash Application Template
-
-Script Description: This script defines an example plotly figure with many subfigures driven by the values of the Dash controls.
+Script Description: this script defines some 3D example figures.  These examples come directly from plotly's documentation, though arranged differently.
 
 Exceptional notes about this script:
 (none)
 
-Callback methods: N/A
+Callback methods: 0
 
 ~~~
 
-This figure was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

@@ -1,22 +1,22 @@
 """
 Module/Script Name: navigation_dropdown.py
-Author: M. W. Hefner
 
-Created: 6/28/2023
-Last Modified: 9/06/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 6/28/2023
 
-Script Description: This script defines the style, layout, and callback functionality of the navigation_dropdown.
+Last Modified: 10/29/2023
 
-Exceptional notes about this script:
+Script Description: this script describes the functionality of the navigation dropdown.  Use this script along with the display_container.py together to add pages to your application.
+
+Exceptional notes about this script: 
 (none)
 
-Callback methods: 1
+Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

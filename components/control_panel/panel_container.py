@@ -1,22 +1,22 @@
 """
 Module/Script Name: panel_container.py
-Author: M. W. Hefner
 
-Created: 6/28/2023
-Last Modified: 10/21/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 6/28/2023
 
-Script Description: This script defines the logical layout and callback functionality of the panel_container, one of the two primary components of the DataDash Dash application template.  As the name implies, this panel contains all of the controls that will allow the user to navigate and interact with your application.
+Last Modified: 10/29/2023
+
+Script Description: this is the main container for the control panel.  This is where the control panel toggle is defined.
 
 Exceptional notes about this script:
 (none)
 
-Callback methods: 1
+Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

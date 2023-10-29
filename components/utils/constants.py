@@ -1,10 +1,22 @@
 """
 Module/Script Name: constants.py
-Author: M. W. Hefner
-Created: 6/28/2023
-Last Modified: 9/08/2023
 
-Contains import and other utility functions for the application.
+Author(s): M. W. Hefner
+
+Initially Created: 06/28/2023
+
+Last Modified: 10/29/2023
+
+Script Description: this script contains constants and calls for locally stored (on the application server) data.
+
+Exceptional notes about this script:
+(none)
+
+Callback methods: 0
+
+~~~
+
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

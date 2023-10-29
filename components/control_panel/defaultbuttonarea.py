@@ -1,13 +1,13 @@
 """
 Module/Script Name: defaultbuttonarea.py
-Author: M. W. Hefner
 
-Created: 6/29/2023
-Last Modified: 7/14/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 6/29/2023
 
-Script Description: This script defines the style, layout, and callback functionality of the defaultbuttonarea link area, which includes the back-to-datadash button and the theme toggle.
+Last Modified: 10/29/2023
+
+Script Description: this script defines the boilerplate area at the bottom of the control panel.  This includes the theme toggle, the datadash button, and the credits.
 
 Exceptional notes about this script:
 (none)
@@ -16,7 +16,7 @@ Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

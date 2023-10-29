@@ -1,13 +1,13 @@
 """
 Module/Script Name: controls_container.py
-Author: M. W. Hefner
 
-Created: 6/28/2023
-Last Modified: 7/14/2023
+Author(s): M. W. Hefner
 
-Project: CDIAC at AppState
+Initially Created: 6/28/2023
 
-Script Description: This script defines the style, layout, and callback functionality of the controls_container.
+Last Modified: 10/29/2023
+
+Script Description: contains the controls of the application, including navigation, and user controls, and the boilerplate credits at the bottom of the control panel.
 
 Exceptional notes about this script:
 (none)
@@ -16,7 +16,7 @@ Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 
@@ -29,6 +29,7 @@ import components.control_panel.controls.navigation_dropdown as navigation_dropd
 import components.control_panel.controls.theme_toggle as theme_toggle
 import components.control_panel.defaultbuttonarea as defaultbuttonarea
 import components.control_panel.controls.buttons_templates as button_templates
+
 # LAYOUT
 layout = dash.html.Div(
     id = component_id,
@@ -38,7 +39,7 @@ layout = dash.html.Div(
         navigation_dropdown.layout,
 
         # CONTROLS GO HERE
-        dash.dcc.Loading(button_templates.layout),
+        dash.dcc.Loading(button_templates.layout, color = "#ffcc00"),
 
         # INFO / DEFAULT BUTTON AREA
         defaultbuttonarea.layout,

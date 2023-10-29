@@ -1,22 +1,22 @@
 """
-Module/Script Name: content_display.py
-Author: M. W. Hefner
+Module/Script Name: display_container.py
 
-Created: 7/01/2023
-Last Modified: 7/16/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 7/01/2023
 
-Script Description: This script defines the logical layout and callback functionality of the content_display.
+Last Modified: 10/29/2023
+
+Script Description: This is the display container that holds the content being displayed by the application.  It calls different plotly figures, markdowns and tables as selected by the navigation dropdown menu.
 
 Exceptional notes about this script:
 (none)
 
-Callback methods: 2
+Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

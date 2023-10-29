@@ -1,4 +1,24 @@
-# Temporary file for connecting to the data server.
+"""
+Module/Script Name: sqlconnection.py
+
+Author(s): M. W. Hefner
+
+Initially Created: 06/28/2023
+
+Last Modified: 10/29/2023
+
+Script Description: this script handles all of the connections to the data server.  Do not put calls to the data server elsewhere in your code - losing track of these can be a hazard.
+
+Exceptional notes about this script:
+(none)
+
+Callback methods: 0
+
+~~~
+
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+
+"""
 
 from mysql.connector import connect, Error
 from components.utils.config import cfg

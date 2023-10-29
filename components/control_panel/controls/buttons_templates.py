@@ -1,11 +1,11 @@
 """
-Module/Script Name: button_templates.py
-Author: M. W. Hefner
+Module/Script Name: button_templates.p
 
-Created: 7/01/2023
-Last Modified: 7/15/2023
+Author(s): M. W. Hefner
 
-Project: DataDash Application Template
+Initially Created: 7/01/2023
+
+Last Modified: 10/29/2023
 
 Script Description: This script demonstrates some of the dash core component controls available for the control panel of your DataDash application.
 
@@ -16,7 +16,7 @@ Callback methods: 3
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

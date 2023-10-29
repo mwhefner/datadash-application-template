@@ -1,3 +1,25 @@
+"""
+Module/Script Name: login.py
+
+Author(s): M. W. Hefner
+
+Initially Created: 06/28/2023
+
+Last Modified: 10/29/2023
+
+Script Description: this script provides authorization based on (1) application metadata (is the application public?  if not, does the user have access to the application?) and (2) shibb authorization.
+
+Exceptional notes about this script:
+(none)
+
+Callback methods: 0
+
+~~~
+
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+
+"""
+
 import flask
 import components.utils.sqlconnection as dataserver
 
@@ -28,11 +50,6 @@ def authenticaedLogin():
 # Access RIEEE Data Server application metadata to determine if
 # the user is authorized for this application.
 def userIsAuthorized():
-
-    # If there is no request context, ignore and return out
-    if not flask.has_request_context():
-        return False
-
     # First grab application metadata.
     metadata = dataserver.get_application_metadata()
     applicationIsPublic = metadata[0][0][0].lower() == "true"
@@ -40,6 +57,10 @@ def userIsAuthorized():
     # If the application is public, return true.
     if applicationIsPublic:
         return True
+
+    # If there is no request context, ignore and return out
+    if not flask.has_request_context():
+        return False
 
     # Get Log in information
     login = authenticaedLogin()

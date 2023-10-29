@@ -1,13 +1,11 @@
 """
 Module/Script Name: application.py
 
-Author: M. W. Hefner
+Author(s): M. W. Hefner
 
-Created: 6/28/2023
+Initially Created: 6/28/2023
 
-Last Modified: 10/27/2023
-
-Project: DataDash Application Template
+Last Modified: 10/29/2023
 
 Script Description: This script initializes the dash application. It loads in needed libraries, reads the data server configuration, loads style sheets, and initializes the server.  It also contains the scripting that authorizes a user to access the application.
 
@@ -24,7 +22,7 @@ This Dash application was created using the template provided by the Research In
 """
 
 # !!! IMPORTANT: CHANGE TO FALSE BEFORE PUSHING !!!
-LOCAL_DEVELOPMENT = False
+LOCAL_DEVELOPMENT = True
 # !!! IMPORTANT: CHANGE TO FALSE BEFORE PUSHING !!!
 
 # Import Dependencies

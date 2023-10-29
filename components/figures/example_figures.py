@@ -1,25 +1,26 @@
 """
 Module/Script Name: example_figures.py
-Author: M. W. Hefner
 
-NOTICE: I AM NOT THE AUTHOR OF MANY OF THESE FIGURE CALLS.  I AM MERELY
-IMPLEMENTING THEM HERE FOR DEMONSTRATION OF HOW TO USE THEM.
+Author(s): M. W. Hefner
 
-Created: 4/12/2023
-Last Modified: 7/16/2023
+Initially Created: 4/12/2023
 
-Project: DataDash Application Template
+Last Modified: 10/29/2023
 
-Script Description: This script defines example plotly figures using static data from the RIEEE data server.
+Script Description: this script connects to the data server and retrieves some sample data.  It then uses that data - and other data it generates - to demonstrate some simple plotly figures.
+
+The top right figure comes from: https://plotly.com/python/histograms/
+The bottom left figure comes from: https://plotly.com/python/box-plots/
+The bottom right figure comes from: an example on https://plotly.com/python/
 
 Exceptional notes about this script:
 (none)
 
-Callback methods: N/A
+Callback methods: 0
 
 ~~~
 
-This figure was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 

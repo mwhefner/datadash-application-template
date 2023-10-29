@@ -1,25 +1,22 @@
 """
 Module/Script Name: maincontainer.py
 
-Author: M. W. Hefner
+Author(s): M. W. Hefner
 
-Created: 6/28/2023
+Initially Created: 6/28/2023
 
-Last Modified: 10/27/2023
-
-Project: DataDash Application Template
+Last Modified: 10/29/2023
 
 Script Description: This script defines the logical layout and callback functionality of the main container of the application.  This container holds all the other html tags and is the child of the secure-container Div tag in the app.layout if and only if the user is authorized.
 
 Exceptional notes about this script:
-
 1.  dcc.Loading doesn't actually create an HTML tag of its own, so it's necessary to handle its styling in the python code.
 
-Callback methods: 1
+Callback methods: 0
 
 ~~~
 
-This Dash application component was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
+This Dash application was created using the template provided by the Research Institute for Environment, Energy, and Economics at Appalachian State University.
 
 """
 
