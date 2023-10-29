@@ -60,7 +60,7 @@ def userIsAuthorized():
 
     # If there is no request context, ignore and return out
     if not flask.has_request_context():
-        return False
+        return applicationIsPublic
 
     # Get Log in information
     login = authenticaedLogin()
@@ -71,7 +71,7 @@ def userIsAuthorized():
         userIsAdmin = metadata[0][0][0].lower() == "true"
         userHasPermission = metadata[1][0][0].lower() == "true"
 
-        if applicationIsPublic or userIsAdmin :
+        if userIsAdmin :
             # USER AUTHORIZED
             return True
         if userHasPermission :

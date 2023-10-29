@@ -2,7 +2,7 @@
 
 **Author: M. W. Hefner**
 
-**Version 1.0.1**
+**Version 1.0.0**
 
 This web application and associated documentation is the RIEEE DataDash Python/Dash framework application template. Demonstrating by highly documented example, It securely connects to the RIEEE data server in real-time, displaying $\LaTeX$-supporting markdown pages, rendering data tables, and utilizing the Dash and Plotly libraries for highly interactive data visualizations. Put a description and introduction to your application here.  
 
