@@ -25,8 +25,12 @@ repo_title = "datadash-application-template"
 
 app_doi = "NONE_FOR_TEMPLATE"
 
+developers = "Matt Hefner, RIEEE Environmental Data Scientist"
+
+version = "1.0.0"
+
 # Import static data
-example_static_data = pd.read_excel('./assets/example_static_data.xlsx')
+example_static_data = pd.read_excel('./assets/data/example_static_data.xlsx')
 
 # For defining cleaning utilities for static data
 def static_utility():

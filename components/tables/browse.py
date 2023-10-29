@@ -10,7 +10,6 @@ Project: DataDash Application Template
 Script Description: This script defines the dash datatable and its container used for a browse table page.
 
 Exceptional notes about this script:
-(none)
 
 Callback methods: 0
 
@@ -26,28 +25,94 @@ component_id = "browse"
 import dash.html.Div
 import dash.html.P
 import dash.dash_table.DataTable
-from components.utils import constants as d
+import pandas as pd
+import base64
+import datetime
+import io
 
 def browse_table() :
 
     return dash.html.Div(
-        id = component_id,
-        className = "table_container",
+        children=[
+        dash.dcc.Upload(
+            id='upload-data-table',
+            children=dash.html.Div([
+                'Drag and Drop or ',
+                dash.html.A('Select a CSV or an Excel File')
+            ]),
+            # Allow multiple files to be uploaded
+            multiple=True
+        ),
+        dash.html.Div(id='output-data-upload'),
+    ])
+
+# Callback helper function
+def parse_contents(contents, filename, date, theme):
+    content_type, content_string = contents.split(',')
+
+    decoded = base64.b64decode(content_string)
+    try:
+        if 'csv' in filename:
+            # Assume that the user uploaded a CSV file
+            df = pd.read_csv(
+                io.StringIO(decoded.decode('utf-8')))
+        elif 'xls' in filename:
+            # Assume that the user uploaded an excel file
+            df = pd.read_excel(io.BytesIO(decoded))
+    except Exception as e:
+        print(e)
+        return dash.html.Div([
+            'There was an error processing this file.'
+        ])
+    
+    # Set a maximum width for columns and enable word wrap
+    style = {
+        'maxWidth': 200,
+        'whiteSpace': 'normal',
+    }
+
+    textColor = "black"
+    cellsBackground = "rgba(0,0,0,0)"
+
+    if theme == 'dark' :
+        textColor = "white"
+
+    return dash.html.Div(
         children = [
-            # TODO: Look into styling this page better.
-            # Do dash.data_table/s play nice with css?
-            dash.html.H1('Example Static Data Table'),
-            dash.html.P('Use the sidebar dropdowns to select data.  Filter and sort below.  Inequality filters (e.g. ">2005" for Year) are supported.'),
+        dash.html.H5(filename),
+        dash.html.H6(["Uploaded at: ", datetime.datetime.fromtimestamp(date)]),
             dash.dash_table.DataTable(
-                fill_width = False,
-                data=d.example_static_data.to_dict('records'),
-                columns=[{'id': c, 'name': c} for c in ["Time", "Variable1", "Variable2"]],
+                df.to_dict('records'),
+                [{'name': i, 'id': i} for i in df.columns],
+                style_table={'overflowX': 'auto'},
+                style_cell=style,  # Apply style to all cells
                 filter_action="native",
                 sort_action="native",
                 sort_mode="multi",
                 page_action="native",
                 page_current= 0,
-                page_size= 15,
-            )
+                fill_width = False,
+                style_header={
+                    'backgroundColor': cellsBackground,
+                    'color': textColor
+                },
+                style_data={
+                    'backgroundColor': cellsBackground,
+                    'color': textColor
+                }
+            ),
         ]
     )
+
+@dash.callback(dash.Output('output-data-upload', 'children'),
+              dash.Input('upload-data-table', 'contents'),
+              dash.State('upload-data-table', 'filename'),
+              dash.State('upload-data-table', 'last_modified'),
+              dash.Input('theme_toggle', 'className'),
+              )
+def update_output(list_of_contents, list_of_names, list_of_dates, theme):
+    if list_of_contents is not None:
+        children = [
+            parse_contents(c, n, d, theme) for c, n, d in
+            zip(list_of_contents, list_of_names, list_of_dates)]
+        return children

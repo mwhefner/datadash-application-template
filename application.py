@@ -43,8 +43,7 @@ cfg.read('rieee.conf')
 # CSS Styles
 external_stylesheets = {
     'datadash_template_css' : [
-        "./assets/externalstylesheets/dynamic_styling.css",
-        "./assets/externalstylesheets/themes.css"
+        "./assets/externalstylesheets/styles.css"
     ]
 }
 
@@ -74,6 +73,8 @@ app.layout = dash.html.Div(
     children = [
         # A location object tracks the address bar url
         dash.dcc.Location(id='url'),
+        # A data component stores a hash to prevent memorization
+        dash.dcc.Store(data = secrets.token_hex(), id='memory'),
         # Secure container
         dash.html.Div(id='secure-div'),
         # Interval for live update data
@@ -101,9 +102,9 @@ shibbSignOnLayout = dash.html.P(
 
 @dash.callback(
     dash.Output('secure-div', 'children'),
-    dash.Output('url', 'hash'),
+    dash.Output('memory', 'data'),
     dash.Input('url', 'pathname'),
-    dash.State('url', 'hash'),
+    dash.State('memory', 'data'),
     cache_timeout = 0
 )
 def authorize(pathname, hash):
@@ -131,7 +132,7 @@ def authorize(pathname, hash):
         If not, it returns the sign-on page.
 
     string
-        Used to update the url's hash state to prevent memorization.
+        Used to update the state to prevent memorization.
 
     """
     # Application Authorization Token (for preventing memorization)

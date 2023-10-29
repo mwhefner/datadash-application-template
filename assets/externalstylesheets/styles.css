@@ -244,6 +244,9 @@ body {
     box-sizing: border-box;
     overflow-y: auto;
     background-color: rgba(0, 0, 0, 0);
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Styling for Markdown */
@@ -259,28 +262,40 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 85%;
+}
+
+#upload-data-table {
+    width: 95vw;
+    height: 60px;
+    line-height: 60px;
+    border-width: 1px;
+    border-style: dashed;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px;
+}
+
+#upload-data-table a {
+    color: #1EAEDB; 
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#ouput-data-upload {
+    color :#1EAEDB;
 }
 
 /* Plotly Figure */
 
-#plotly-figure {
+.plotly-figure {
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
 }
 
 /* Table displays */
-.table_container p {
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-/* Custom styling for Dash DataTable */
-.dash-table-container th {
-    color: black !important;
-    text-align: center;
-}
-
-.dash-table-container td {
-    color: black !important;
-    text-align: center;
+#data-table-container {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -37,7 +37,7 @@ def animation_example(theme) :
     if theme == 'dark' :
         textCol = '#fff'
 
-    data = io.imread("assets/cells.tif")
+    data = io.imread("assets/data/cells.tif")
 
     data = data.reshape((15, 4, 256, 256))[5:]
 

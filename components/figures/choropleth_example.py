@@ -40,11 +40,11 @@ def choropleth_example(theme) :
         map_theme = "open-street-map"
 
     # Open the JSON file
-    with open('assets/geojson-counties-fips.json', 'r') as json_file:
+    with open('assets/data/geojson-counties-fips.json', 'r') as json_file:
         # Load the JSON data into a Python data structure
         counties = json.load(json_file)
 
-    df = pd.read_csv("assets/fips-unemp-16.csv", dtype={"fips": str})
+    df = pd.read_csv("assets/data/fips-unemp-16.csv", dtype={"fips": str})
 
     import plotly.graph_objects as go
 

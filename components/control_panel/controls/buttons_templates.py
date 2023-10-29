@@ -25,6 +25,7 @@ component_id = "button_templates"
 
 # Import Dependencies
 import dash.html
+import datetime
 
 # LAYOUT
 layout = dash.html.Div(
@@ -197,6 +198,45 @@ layout = dash.html.Div(
             style={'margin-top' : '15px', 'margin-bottom' : '15px'},
             id='textarea-div-id',  
             hidden=True,
+        ),
+
+        # Upload files
+        # BUG: There must be something up with the upload control -
+        # I cannot for the life of me get it to not show
+        # and linger on the panel for a moment at app start-up.
+        # Temp fix: consider surrounding the controls with a dcc.Loading
+        dash.html.Div(
+            id = "upload-contol-container",
+            children= [
+            
+                dash.dcc.Upload(
+                    id='upload-image',
+
+                    children = dash.html.Div(
+                        id = "inner-upload-container",
+                        children = [
+                            'Drag and Drop or ',
+                            dash.html.A('Select Image(s)'),
+                        ]
+                    ),
+
+                    # Would ideally be done with the stylesheet!
+                    style={
+                        'width': '100%',
+                        'height': '60px',
+                        'lineHeight': '60px',
+                        'borderWidth': '1px',
+                        'borderStyle': 'dashed',
+                        'borderRadius': '5px',
+                        'textAlign': 'center',
+                        'margin': '10px'
+                    },
+
+                    # Allow multiple files to be uploaded
+                    multiple=True
+                ),
+                dash.html.Div(id='output-image-upload'),
+            ]
         )
     ]
 )
@@ -230,7 +270,38 @@ def update_visibility(navopt):
     dash.dependencies.Output('range-slider-div-id', 'hidden'),
     dash.dependencies.Output('markdown-div-id', 'hidden'),
     dash.dependencies.Output('textarea-div-id', 'hidden'),
+    dash.dependencies.Output('upload-image', 'hidden'),
+    dash.dependencies.Output('upload-contol-container', 'hidden'),
+    dash.dependencies.Output('inner-upload-container', 'hidden'),
     dash.dependencies.Input(component_id, 'hidden')
 )
 def update_visibility_cascade(hidden):
-    return hidden, hidden, hidden, hidden, hidden, hidden, hidden
+    return hidden, hidden, hidden, hidden, hidden, hidden, hidden, hidden, hidden, hidden
+
+# Helper function for the next callback function
+def parse_contents(contents, filename, date):
+    return dash.html.Div([
+        dash.html.H5(filename),
+        dash.html.H6(datetime.datetime.fromtimestamp(date)),
+
+        # HTML images accept base64 encoded strings in the same format
+        # that is supplied by the upload
+        dash.html.Img(src=contents, width=100),
+        dash.html.Hr(),
+        dash.html.Div('Raw Content'),
+        dash.html.Pre(contents[0:200] + '...', style={
+            'whiteSpace': 'pre-wrap',
+            'wordBreak': 'break-all'
+        })
+    ])
+
+@dash.callback(dash.Output('output-image-upload', 'children'),
+              dash.Input('upload-image', 'contents'),
+              dash.State('upload-image', 'filename'),
+              dash.State('upload-image', 'last_modified'))
+def update_output(list_of_contents, list_of_names, list_of_dates):
+    if list_of_contents is not None:
+        children = [
+            parse_contents(c, n, d) for c, n, d in
+            zip(list_of_contents, list_of_names, list_of_dates)]
+        return children

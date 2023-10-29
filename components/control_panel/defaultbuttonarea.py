@@ -84,7 +84,7 @@ layout = dash.html.Div(
             style={'display': 'block', 'margin': 'auto'}
         ),
 
-        # Statement of RIEEE support and source code link
+        # DOI
         dash.html.P(
             [
                 "DOI: ",
@@ -92,6 +92,21 @@ layout = dash.html.Div(
             ]
         ),
 
+        # Authorship Credit
+        dash.html.P(
+            [
+                "Developer(s): ",
+                constants.developers
+            ]
+        ),
+
+        # Version
+        dash.html.P(
+            [
+                "Version ",
+                constants.version
+            ]
+        ),
     ]
 )
 

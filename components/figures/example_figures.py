@@ -1,5 +1,5 @@
 """
-Module/Script Name: example_figure.py
+Module/Script Name: example_figures.py
 Author: M. W. Hefner
 
 NOTICE: I AM NOT THE AUTHOR OF MANY OF THESE FIGURE CALLS.  I AM MERELY
@@ -10,7 +10,7 @@ Last Modified: 7/16/2023
 
 Project: DataDash Application Template
 
-Script Description: This script defines an example plotly figure using static data from the RIEEE data server.
+Script Description: This script defines example plotly figures using static data from the RIEEE data server.
 
 Exceptional notes about this script:
 (none)
@@ -170,7 +170,7 @@ def subplot_4(theme):
 
     return fig
 
-def simple_example_figure(theme):
+def simple_example_figures(theme):
 
 
     if theme == 'light' :

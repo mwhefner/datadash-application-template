@@ -25,19 +25,18 @@ component_id = "display_container"
 
 # Import Dependencies
 import dash.html.Div
+import plotly.graph_objs as go
 from components.utils import constants as d
-from components.figures.example_figure import simple_example_figure
+from components.figures.example_figures import simple_example_figures
 from components.figures.choropleth_example import choropleth_example
-from components.figures.surface_example import surface_example
+from components.figures.three_d_example import three_d_example
 from components.figures.animation_example import animation_example
 from components.tables.browse import browse_table
+import time
 
 # LAYOUT
 layout = dash.html.Div(
     id = component_id,
-    children= [
-        dash.dcc.Graph(id='plotly-figure')
-    ]
 )
 
 # CALLBACKS (2)
@@ -45,8 +44,9 @@ layout = dash.html.Div(
 @dash.callback(
     dash.dependencies.Output(component_id, 'children'),
     dash.dependencies.Input('navigation-dropdown-controler', 'value'),
+    dash.dependencies.Input('theme_toggle', 'className'),
 )
-def update_container(nav_opt):
+def update_container(nav_opt, theme):
     
     # for displaying all non-plotly figure navigation options
 
@@ -62,53 +62,58 @@ def update_container(nav_opt):
         return [
             dash.dcc.Loading(
                 children=browse_table(),
-                className="table-container"
                 )
         ]
-    else :
-        return [
-            # Displays all plotly-figure navigation options
-            dash.dcc.Graph(id='plotly-figure', style = {'height' :  '100%'})
-        ]
     
-# Updates the graph or map displayed in the content area's plotly figure
-@dash.callback(
-    dash.dependencies.Output('plotly-figure', 'figure'),
-    dash.dependencies.Input('navigation-dropdown-controler', 'value'),
-    # Other interactive controls' values can be included here as input 
-    # to the figure
-    dash.dependencies.Input('theme_toggle', 'className')
-)
-def update_fig_or_table(nav_opt, theme):
-
-    if nav_opt == 'example-1' :
-
-        # Simple Example Figure 
-
-        return simple_example_figure(theme)
-
-    if nav_opt == 'example-3' :
-
-        # Controls Demo
-
-        return choropleth_example(theme)
-
-    if nav_opt == 'example-5' :
-
-        # Surface Demo
-
-        return surface_example(theme)
-    
-    if nav_opt == 'example-6' :
-
-        # Animation Demo
-
-        return animation_example(theme)
-
     else :
 
-        # If you're not changing the content_display to a different plotly figure,
-        # or changing one of the inputs,
-        # don't update the figure
+        if nav_opt == 'example-1' :
 
-        return dash.no_update
+            # Simple Example Figure 
+
+            return dash.dcc.Loading(
+                children= dash.dcc.Graph(
+                    figure=simple_example_figures(theme), 
+                    className='plotly-figure', 
+                    style = {'height' :  '100vh'})
+            )
+
+        if nav_opt == 'example-3' :
+
+            # Controls Demo
+            return dash.dcc.Loading(
+                children=dash.dcc.Graph(
+                    figure=choropleth_example(theme), 
+                    className='plotly-figure', 
+                    style = {'height' :  '100vh'})
+            )
+
+        if nav_opt == 'example-5' :
+
+            # Surface Demo
+            return dash.dcc.Loading(
+                children=dash.dcc.Graph(
+                    figure=three_d_example(theme), 
+                    className='plotly-figure', 
+                    style = {'height' :  '100vh'})
+            )
+        
+        if nav_opt == 'example-6' :
+
+            # Animation Demo
+            return dash.dcc.Loading(
+                children=dash.dcc.Graph(
+                    figure=animation_example(theme), 
+                    className='plotly-figure', 
+                    style = {'height' :  '100vh'})
+            )
+
+        else :
+            return dash.dcc.Loading(
+                children=dash.dcc.Graph(
+                    figure=go.Figure(), 
+                    className='plotly-figure', 
+                    style = {'height' :  '100vh'}))
+
+
+

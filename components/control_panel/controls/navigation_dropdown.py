@@ -55,15 +55,16 @@ layout = dash.html.Div(
 
                 {'label': 'Example: Plotly Figures of Secure Data Server Data', 'value': 'example-1'},
 
-                #{'label': 'Example: Simple Data Table of Local Static Data', 'value': 'example-2'},
+                {'label': 'Example: Animations', 'value': 'example-6'},
 
-                {'label': 'Example: Dash Controls and Interactive Choropleth', 'value': 'example-3'},
+                {'label': 'Example: Simple Data Table of Uploaded Data', 'value': 'example-2'},
+
+                {'label': 'Example: Dash Controls and Mapbox', 'value': 'example-3'},
 
                 #{'label': 'Example: Live Update Figures', 'value': 'example-4'},
                 
-                {'label': 'Example: Surfaces', 'value': 'example-5'},
+                {'label': 'Example: 3D Data', 'value': 'example-5'},
 
-                {'label': 'Example: Animations', 'value': 'example-6'},
             ],
 
             # Default to the Carbon Atlas
@@ -87,3 +88,22 @@ layout = dash.html.Div(
 )
 def update_source_dropdown(theme):
     return "dropdown_" + theme
+
+'''
+
+come back to the idea of having the page function with hashes (and maybe a tab navigation?)
+
+-m. w. hefner 10/29/2023
+
+@dash.callback(
+    dash.dependencies.Output('navigation-dropdown-controler', 'value'),
+    dash.dependencies.Input('url', 'hash')
+)
+def update_source_dropdown(hash):
+    if hash in ["example-1", "example-2", "example-3", "example-5", "example-6"] :
+        return hash
+    elif hash == "" or hash == 'about' :
+        return "about"
+    else :
+        return dash.no_update
+'''

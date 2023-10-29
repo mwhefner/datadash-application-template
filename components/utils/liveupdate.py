@@ -1,5 +1,5 @@
 import dash
-
+'''
 @dash.callback(
     dash.Output('plotly-figure', 'figure'),
     dash.Input('interval-component', 'n_intervals'),
@@ -10,3 +10,5 @@ import dash
 )
 def live_update_plotly_figures(dropdown_value):
     return 1
+
+    '''

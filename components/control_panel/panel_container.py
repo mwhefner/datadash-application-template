@@ -37,7 +37,7 @@ layout = dash.html.Div(
         # HEADER
         control_panel_header.layout,
 
-        # OPTIONS CONTAINER
+        # CONTROLS CONTAINER
         controls_container.layout,
 
         dash.html.Div(

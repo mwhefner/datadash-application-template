@@ -1,9 +1,11 @@
 """
-Module/Script Name: surface_example.py
+Module/Script Name: three_d_example.py
+
 Author: M. W. Hefner
 
 Created: 7/12/2023
-Last Modified: 10/24/2023
+
+Last Modified: 10/29/2023
 
 Project: DataDash Application Template
 
@@ -22,21 +24,12 @@ This figure was created using the template provided by the Research Institute fo
 
 # Import needed libraries
 from plotly.subplots import make_subplots
-import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
 import numpy as np
-from urllib.request import urlopen
-import json
+from plotly import express as px
 
-
-# Example Plotly Figure
-def surface_example(theme) :
-
-    if theme == 'light' :
-        textCol = '#000'
-    if theme == 'dark' :
-        textCol = '#fff'
+# Surface Visualization
+def surface_viz(textCol) :
 
     a, b, d = 1.32, 1., 0.8
     c = a**2 - b**2
@@ -45,17 +38,48 @@ def surface_example(theme) :
     y = b * np.sin(u) * (a - d*np.cos(v)) / (a - c * np.cos(u) * np.cos(v))
     z = b * np.sin(v) * (c*np.cos(u) - d) / (a - c * np.cos(u) * np.cos(v))
 
+    return go.Surface(x=x, y=y, z=z, colorbar_x=-0.07)
+
+# Volume Density Visualization
+def density_viz(textCol) :
+    X, Y, Z = np.mgrid[-1:1:30j, -1:1:30j, -1:1:30j]
+    values =    np.sin(np.pi*X) * np.cos(np.pi*Z) * np.sin(np.pi*Y)
+
+    fig = go.Volume(
+    x=X.flatten(),
+    y=Y.flatten(),
+    z=Z.flatten(),
+    value=values.flatten(),
+    isomin=-0.1,
+    isomax=0.8,
+    opacity=0.1, # needs to be small to see through all surfaces
+    surface_count=21, # needs to be a large number for good volume rendering
+    )
+
+    return fig
+
+
+# Example Plotly Figure
+def three_d_example(theme) :
+
+    if theme == 'light' :
+        textCol = '#000'
+    if theme == 'dark' :
+        textCol = '#fff'
+
+    # Init the plot
     fig = make_subplots(rows=1, cols=2,
                         specs=[[{'is_3d': True}, {'is_3d': True}]],
-                        subplot_titles=['Color corresponds to z', 'Color corresponds to distance to origin'],
+                        subplot_titles=['Color corresponds to z value', 'Seamlessly Integrate 3D Data'],
                         )
 
-    fig.add_trace(go.Surface(x=x, y=y, z=z, colorbar_x=-0.07), 1, 1)
-    fig.add_trace(go.Surface(x=x, y=y, z=z, surfacecolor=x**2 + y**2 + z**2), 1, 2)
-    #fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    # Add the surface
+    fig.add_trace(surface_viz(textCol), 1, 1)
+
+    # Add the MRI viz
+    fig.add_trace(density_viz(textCol), 1, 2)
 
     fig.update_layout(
-
         scene = dict(
             xaxis = dict(
                 backgroundcolor="rgba(0,0,0,0)",
@@ -72,7 +96,25 @@ def surface_example(theme) :
                 gridcolor=textCol,
                 showbackground=True,
                 zerolinecolor=textCol,),
-                ),
+            ),
+
+        scene2 = dict(
+            xaxis = dict(
+                backgroundcolor="rgba(0,0,0,0)",
+                gridcolor=textCol,
+                showbackground=True,
+                zerolinecolor=textCol,),
+            yaxis = dict(
+                backgroundcolor="rgba(0,0,0,0)",
+                gridcolor=textCol,
+                showbackground=True,
+                zerolinecolor=textCol,),
+            zaxis = dict(
+                backgroundcolor="rgba(0,0,0,0)",
+                gridcolor=textCol,
+                showbackground=True,
+                zerolinecolor=textCol,),
+            ),
 
         # Make sure the background of figures is transparent so that 
         # theme functionality is extended to the figure

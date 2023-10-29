@@ -38,7 +38,7 @@ layout = dash.html.Div(
         navigation_dropdown.layout,
 
         # CONTROLS GO HERE
-        button_templates.layout,
+        dash.dcc.Loading(button_templates.layout),
 
         # INFO / DEFAULT BUTTON AREA
         defaultbuttonarea.layout,
