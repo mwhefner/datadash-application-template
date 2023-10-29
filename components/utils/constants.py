@@ -39,7 +39,7 @@ app_doi = "NONE_FOR_TEMPLATE"
 
 developers = "Matt Hefner, RIEEE Environmental Data Scientist"
 
-version = "1.0.0"
+version = "1.0.1"
 
 # Import static data
 example_static_data = pd.read_excel('./assets/data/example_static_data.xlsx')
