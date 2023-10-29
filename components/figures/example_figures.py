@@ -27,11 +27,9 @@ This Dash application was created using the template provided by the Research In
 # Import needed libraries
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import plotly.figure_factory as ff
 import plotly.express as px
 import pandas as pd
 import numpy as np
-import plotly.io as pio
 import components.utils.sqlconnection as sqlconnection
 
 # Creates a random plot (for development purposes)

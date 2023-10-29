@@ -67,7 +67,7 @@ layout = dash.html.Div(
 
             ],
 
-            # Default to the Carbon Atlas
+            # Default to the about page
             value = 'about',
 
             clearable=False,

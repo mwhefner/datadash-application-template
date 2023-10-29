@@ -2,6 +2,8 @@
 
 **Author: M. W. Hefner**
 
+**Version 1.0.1**
+
 This web application and associated documentation is the RIEEE DataDash Python/Dash framework application template. Demonstrating by highly documented example, It securely connects to the RIEEE data server in real-time, displaying $\LaTeX$-supporting markdown pages, rendering data tables, and utilizing the Dash and Plotly libraries for highly interactive data visualizations. Put a description and introduction to your application here.  
 
 $\LaTeX$ example: 
@@ -11,7 +13,6 @@ The **First Fundamental Theorem of Calculus** states:
 Let $f$ be a continuous function on the closed interval $[a, b]$, and let $F(x)$ be an antiderivative of $f$ on $[a, b]$. Then, for any $c$ in the open interval $(a, b)$, we have
 
 $$\int_a^b f(x) \, dx = F(b) - F(a).$$
-
 
 ## Table of Contents
 

@@ -72,6 +72,7 @@ def update_container(nav_opt, theme):
             # Simple Example Figure 
 
             return dash.dcc.Loading(
+                id = "simple-demo-loading",
                 children= dash.dcc.Graph(
                     figure=simple_example_figures(theme), 
                     className='plotly-figure', 
@@ -82,6 +83,7 @@ def update_container(nav_opt, theme):
 
             # Controls Demo
             return dash.dcc.Loading(
+                id = "controls-demo-loading",
                 children=dash.dcc.Graph(
                     figure=choropleth_example(theme), 
                     className='plotly-figure', 
@@ -92,6 +94,7 @@ def update_container(nav_opt, theme):
 
             # Surface Demo
             return dash.dcc.Loading(
+                id = "surface-demo-loading",
                 children=dash.dcc.Graph(
                     figure=three_d_example(theme), 
                     className='plotly-figure', 
@@ -102,6 +105,7 @@ def update_container(nav_opt, theme):
 
             # Animation Demo
             return dash.dcc.Loading(
+                id = "animation-demo-loading",
                 children=dash.dcc.Graph(
                     figure=animation_example(theme), 
                     className='plotly-figure', 
