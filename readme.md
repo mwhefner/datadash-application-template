@@ -10,7 +10,7 @@ $\LaTeX$ example:
 
 The **First Fundamental Theorem of Calculus** states:
 
-Let $f$ be a continuous function on the closed interval $[a, b]$, and let $F(x)$ be an antiderivative of $f$ on $[a, b]$. Then, for any $c$ in the open interval $(a, b)$, we have
+Let $f$ be a continuous function on the closed interval $[a, b]$, and let $F(x)$ be an antiderivative of $f$ on $[a, b]$. Then:
 
 $$\int_a^b f(x) \, dx = F(b) - F(a).$$
 
@@ -121,9 +121,9 @@ For the template, there are five navigation pages:
 
 - The first is a demonstration of a markdown page display, which display's the project's readme.md (other markdown files should be included in the assets' markdown folder.)  It is good practice to make this about page available in the applicaiton to encourage others to learn and contribute.
 - The second page securely connects to the RIEEE data server and creates example plotly figures.  
-- The third page gives a sample of Dash controls in the control panel and an interactive choropleth map.
-- The fourth displays 3 dimensional data.
-- The fifth displays a straightforward example of interactive image analysis.
+- The third displays a straightforward example of interactive image analysis / animation.
+- The fourth page gives a sample of Dash controls in the control panel and an interactive choropleth map.
+- The fifth displays 3 dimensional data.
 
 ## Contributing
 

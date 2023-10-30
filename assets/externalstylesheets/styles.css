@@ -278,12 +278,18 @@ body {
 
 #upload-data-table a {
     color: #1EAEDB; 
-  text-decoration: underline;
-  cursor: pointer;
-}
+    text-decoration: underline;
+    cursor: pointer;
+    }
+
+#inner-upload-container a {
+    color: #1EAEDB; 
+    text-decoration: underline;
+    cursor: pointer;
+    }
 
 #ouput-data-upload {
-    color :#1EAEDB;
+    max-width: fit-content;
 }
 
 /* Plotly Figure */
@@ -294,8 +300,6 @@ body {
 }
 
 /* Table displays */
-#data-table-container {
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
+#table-container {
+    text-align: center;
 }

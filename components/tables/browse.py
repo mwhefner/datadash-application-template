@@ -5,7 +5,7 @@ Author(s): M. W. Hefner
 
 Initially Created: 7/15/2023
 
-Last Modified: 
+Last Modified: 10/29/2023
 
 Script Description: This script defines the upload csv/excel component and dash datatable.
 
@@ -80,6 +80,7 @@ def parse_contents(contents, filename, date, theme):
         textColor = "white"
 
     return dash.html.Div(
+        id="table-container",
         children = [
         dash.html.H3(["Filename: ",filename]),
         dash.html.H3(["Uploaded: ", datetime.datetime.fromtimestamp(date)]),
@@ -93,6 +94,7 @@ def parse_contents(contents, filename, date, theme):
                 sort_mode="multi",
                 page_action="native",
                 page_current= 0,
+                editable=True,
                 fill_width = False,
                 style_header={
                     'backgroundColor': cellsBackground,

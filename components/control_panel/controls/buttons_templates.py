@@ -214,10 +214,10 @@ layout = dash.html.Div(
 
                     children = dash.html.Div(
                         id = "inner-upload-container",
-                        children = [
+                        children = dash.html.Div([
                             'Drag and Drop or ',
                             dash.html.A('Select Image(s)'),
-                        ]
+                        ])
                     ),
 
                     # Would ideally be done with the stylesheet!
@@ -286,7 +286,7 @@ def parse_contents(contents, filename, date):
 
         # HTML images accept base64 encoded strings in the same format
         # that is supplied by the upload
-        dash.html.Img(src=contents, width=100),
+        dash.html.Img(src=contents),
         dash.html.Hr(),
         dash.html.Div('Raw Content'),
         dash.html.Pre(contents[0:200] + '...', style={
