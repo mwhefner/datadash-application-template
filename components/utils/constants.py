@@ -37,7 +37,7 @@ repo_title = "datadash-application-template"
 
 app_doi = "NONE_FOR_TEMPLATE"
 
-developers = "Matt Hefner, RIEEE Environmental Data Scientist"
+developers = "Matt Hefner"
 
 version = "1.0.0"
 

@@ -133,4 +133,4 @@ This template's python source uses detailed NumPy/SciPy docustring conventions.
 
 ## Verisioning, Publishing and Licencing
 
-Verisioning, publishing and licencing for all DataDash applications is handled through GitHub.  See the development handbook for details.
+Verisioning, publishing and licencing for all DataDash applications is handled through GitHub and Zenodo.  See the development handbook for details.

@@ -66,7 +66,7 @@ layout = dash.html.Div(
                     href = "https://rieee.appstate.edu", 
                     style={"color" : "white"}
                 ),
-                " at Appalachian State University through the RIEEE DataDash secure research web application platform. License information and source is avaiable ",
+                " at Appalachian State University through the RIEEE DataDash secure research web application platform. License information and the python source code for this application is avaiable ",
                 dash.html.A(
                     "here on GitHub.", 
                     href = "https://github.com/mwhefner/datadash-application-template", 
@@ -84,29 +84,30 @@ layout = dash.html.Div(
             style={'display': 'block', 'margin': 'auto'}
         ),
 
-        # DOI
+        # Version
         dash.html.P(
             [
-                "DOI: ",
-                constants.app_doi
+                "To cite this application: "
             ]
+        ),
+
+        # DOI
+        dash.html.A(
+            dash.html.Img(
+                src='https://zenodo.org/badge/666200101.svg'
+            ), 
+            href = "https://zenodo.org/doi/10.5281/zenodo.10607881",
+            style={'display': 'block', 'margin': 'auto'}
         ),
 
         # Authorship Credit
         dash.html.P(
             [
-                "Developer(s): ",
+                "Developer: ",
                 constants.developers
             ]
         ),
 
-        # Version
-        dash.html.P(
-            [
-                "Version ",
-                constants.version
-            ]
-        ),
     ]
 )
 
