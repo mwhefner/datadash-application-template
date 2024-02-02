@@ -94,9 +94,9 @@ layout = dash.html.Div(
         # DOI
         dash.html.A(
             dash.html.Img(
-                src='https://zenodo.org/badge/666200101.svg'
+                src='https://zenodo.org/badge/707732911.svg'
             ), 
-            href = "https://zenodo.org/doi/10.5281/zenodo.10607881",
+            href = "https://zenodo.org/doi/10.5281/zenodo.10608057",
             style={'display': 'block', 'margin': 'auto'}
         ),
 
